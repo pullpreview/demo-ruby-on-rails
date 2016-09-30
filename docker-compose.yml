@@ -1,0 +1,37 @@
+# https://semaphoreci.com/community/tutorials/dockerizing-a-ruby-on-rails-application
+postgres:
+  image: postgres:9.4.5
+  environment:
+    POSTGRES_USER: app
+    POSTGRES_PASSWORD: p4ssw0rd
+    POSTGRES_DB: app
+  ports:
+    - '5432:5432'
+
+redis:
+  image: redis:3.0.5
+  ports:
+    - '6379:6379'
+
+web:
+  build: .
+  links:
+    - postgres
+    - redis
+  volumes:
+    - .:/app
+  ports:
+    - '8000:8000'
+  env_file:
+    - .env.pullpreview
+
+worker:
+  build: .
+  command: bundle exec sidekiq -C config/sidekiq.yml
+  links:
+    - postgres
+    - redis
+  volumes:
+    - .:/app
+  env_file:
+    - .env.pullpreview
