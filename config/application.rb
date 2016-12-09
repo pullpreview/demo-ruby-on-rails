@@ -8,13 +8,7 @@ Bundler.require(*Rails.groups)
 
 module PullpreviewExampleRailsApp
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
-
-    config.log_level = :debug
-    config.log_tags  = [:subdomain, :uuid]
-    config.logger    = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
+    config.load_defaults 5.0
 
     # Since we're using Redis for Sidekiq, we might as well use Redis to back
     # our cache store. This keeps our application stateless as well.
@@ -31,8 +25,5 @@ module PullpreviewExampleRailsApp
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
   end
 end

@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+
+bundle exec puma -b "tcp://$LISTEN_ON"

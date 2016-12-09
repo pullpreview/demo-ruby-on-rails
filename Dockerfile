@@ -1,10 +1,10 @@
 # Use the barebones version of Ruby 2.2.3.
-FROM ruby:2.2.3-slim
+FROM ruby:2.7-slim
 
 MAINTAINER Cyril Rohr <cyril@pullpreview.com>
 
 # Install dependencies:
-RUN apt-get update && apt-get install -qq -y build-essential nodejs libpq-dev postgresql-client-9.4 --fix-missing --no-install-recommends
+RUN apt-get update && apt-get install -qq -y build-essential nodejs libpq-dev postgresql-client
 
 # Set an environment variable to store where the app is installed to inside
 # of the Docker image.
@@ -28,8 +28,5 @@ COPY . .
 # Provide dummy data to Rails so it can pre-compile assets.
 RUN bundle exec rake RAILS_ENV=production DATABASE_URL=postgresql://user:pass@127.0.0.1/dbname SECRET_TOKEN=pickasecuretoken assets:precompile
 
-# Expose a volume so that nginx will be able to read in assets in production.
-VOLUME ["$INSTALL_PATH/public"]
-
 # The default command that gets ran will be to start the Unicorn server.
-CMD bundle exec unicorn -c config/unicorn.rb
+CMD ./docker/web
