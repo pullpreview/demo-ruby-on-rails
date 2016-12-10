@@ -32,4 +32,4 @@ RUN bundle exec rake RAILS_ENV=production DATABASE_URL=postgresql://user:pass@12
 VOLUME ["$INSTALL_PATH/public"]
 
 # The default command that gets ran will be to start the Unicorn server.
-CMD bundle exec unicorn -c config/unicorn.rb
+CMD ./proc/web

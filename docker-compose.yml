@@ -33,7 +33,7 @@ web:
 
 worker:
   build: .
-  command: bundle exec sidekiq -C config/sidekiq.yml
+  command: ./proc/worker
   links:
     - postgres
     - redis
