@@ -45,7 +45,7 @@ group :development do
 end
 
 
-gem 'unicorn', '~> 4.9'
+gem 'puma'
 gem 'pg', '~> 0.18.3'
 gem 'sidekiq', '~> 4.0.1'
 gem 'redis-rails', '~> 4.0.0'

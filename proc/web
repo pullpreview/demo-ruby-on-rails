@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
 
-bundle exec unicorn -c config/unicorn.rb
+bundle exec puma -b "tcp://$LISTEN_ON"
