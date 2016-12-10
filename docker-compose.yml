@@ -5,15 +5,19 @@ postgres:
     POSTGRES_USER: app
     POSTGRES_PASSWORD: p4ssw0rd
     POSTGRES_DB: app
+  expose:
+    - "5432"
   ports:
-    - '5432:5432'
+    - '15432:5432'
   volumes:
     - ./export/db:/var/lib/postgresql/data
 
 redis:
   image: redis:3.0.5
+  expose:
+    - "6379"
   ports:
-    - '6379:6379'
+    - '16379:6379'
 
 web:
   build: .
@@ -23,7 +27,7 @@ web:
   volumes:
     - .:/app
   ports:
-    - '8000:8000'
+    - '80:8000'
   env_file:
     - .env.pullpreview
 

@@ -1,0 +1,10 @@
+<h1>Posts</h1>
+
+<%= content_tag :ul do %>
+  <%= content_tag_for :li, @posts do |post| %>
+    <%= post.title %> (<%= l(post.updated_at) %>
+    <%= content_tag :p, post.body %>
+  <% end %>
+<% end %>
+
+<%= link_to "Write new post", [:new, :post] %>
