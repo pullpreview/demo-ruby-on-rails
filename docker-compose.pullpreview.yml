@@ -5,20 +5,16 @@ postgres:
     POSTGRES_USER: app
     POSTGRES_PASSWORD: p4ssw0rd
     POSTGRES_DB: app
-  expose:
-    - "5432"
   ports:
-    - '15432:5432'
+    - '5432:5432'
   volumes:
     - ./export/db:/var/lib/postgresql/data
   memory: 64
 
 redis:
   image: redis:3.0.5
-  expose:
-    - "6379"
   ports:
-    - '16379:6379'
+    - '6379:6379'
   memory: 64
 
 web:
