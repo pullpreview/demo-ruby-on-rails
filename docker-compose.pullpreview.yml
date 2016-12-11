@@ -19,6 +19,7 @@ redis:
 
 web:
   build: .
+  command: "./docker/wait-for-it.sh -t 60 -h postgres -p 5432 --strict -- ./docker/web"
   links:
     - postgres
     - redis
@@ -32,7 +33,7 @@ web:
 
 worker:
   build: .
-  command: ./proc/worker
+  command: "./docker/wait-for-it.sh -t 60 -h postgres -p 5432 --strict -- ./docker/worker"
   links:
     - postgres
     - redis
