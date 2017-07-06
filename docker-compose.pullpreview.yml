@@ -9,7 +9,7 @@ postgres:
     - '5432:5432'
   volumes:
     - ./export/db:/var/lib/postgresql/data
-  memory: 64
+  memory: 128
 
 redis:
   image: redis:3.0.5
@@ -19,7 +19,7 @@ redis:
 
 web:
   build: .
-  command: "/waitforit -command './docker/web' postgres 5432"
+  command: "/waitforit -count 120 -command './docker/web' postgres 5432"
   links:
     - postgres
     - redis
@@ -29,11 +29,11 @@ web:
     - '80:8000'
   env_file:
     - .env.pullpreview
-  memory: 512
+  memory: 384
 
 worker:
   build: .
-  command: "./docker/wait-for-it.sh -t 60 -h postgres -p 5432 --strict -- ./docker/worker"
+  command: "/waitforit -count 120 -command './docker/worker' postgres 5432"
   links:
     - postgres
     - redis
