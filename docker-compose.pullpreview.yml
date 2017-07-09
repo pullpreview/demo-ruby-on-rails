@@ -19,7 +19,7 @@ redis:
 
 web:
   build: .
-  command: "/waitforit -count 120 -command './docker/web' postgres 5432"
+  command: "./docker/web"
   links:
     - postgres
     - redis
@@ -33,7 +33,7 @@ web:
 
 worker:
   build: .
-  command: "/waitforit -count 120 -command './docker/worker' postgres 5432"
+  command: "./docker/worker"
   links:
     - postgres
     - redis
