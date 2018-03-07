@@ -37,8 +37,8 @@ worker:
   links:
     - postgres
     - redis
-  volumes:
-    - .:/app
+  volumes_from:
+    - web
   env_file:
     - .env.pullpreview
   memory: 384
