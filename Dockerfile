@@ -28,8 +28,5 @@ COPY . .
 # Provide dummy data to Rails so it can pre-compile assets.
 RUN bundle exec rake RAILS_ENV=production DATABASE_URL=postgresql://user:pass@127.0.0.1/dbname SECRET_TOKEN=pickasecuretoken assets:precompile
 
-# Expose a volume so that nginx will be able to read in assets in production.
-VOLUME ["$INSTALL_PATH/public"]
-
 # The default command that gets ran will be to start the Unicorn server.
 CMD ./docker/web
