@@ -9,13 +9,13 @@ postgres:
     - '5432:5432'
   volumes:
     - ./export/db:/var/lib/postgresql/data
-  memory: 128
+  # memory: 128
 
 redis:
   image: redis:3.0.5
   ports:
     - '6379:6379'
-  memory: 64
+  # memory: 64
 
 web:
   build: .
@@ -24,12 +24,12 @@ web:
     - postgres
     - redis
   volumes:
-    - /app/files
+    - "/files"
   ports:
     - '80:8000'
   env_file:
     - .env.pullpreview
-  memory: 384
+  # memory: 384
 
 worker:
   build: .
@@ -41,4 +41,4 @@ worker:
     - web
   env_file:
     - .env.pullpreview
-  memory: 384
+  # memory: 384
