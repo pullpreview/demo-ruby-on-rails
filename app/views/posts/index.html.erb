@@ -8,3 +8,7 @@
 <% end %>
 
 <%= link_to "Write new post", [:new, :post] %>
+
+
+<hr>
+<p>Content of API_KEY: <%= ENV.fetch('API_KEY', "UNSET").inspect %></p>
