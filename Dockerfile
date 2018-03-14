@@ -24,7 +24,7 @@ RUN bundle install
 # Copy in the application code from your work station at the current directory
 # over to the working directory.
 COPY . .
-RUN useradd foo && mkdir -p /files && chown -R foo /app /files
+RUN useradd foo && mkdir -p /app/files && chown -R foo:foo /app /app/files && chmod 777 /app/files
 USER foo
 
 # Provide dummy data to Rails so it can pre-compile assets.
