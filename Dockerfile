@@ -1,5 +1,5 @@
 # Use the barebones version of Ruby 2.2.3.
-FROM ruby:2.2.3-slim
+FROM ruby:2.6.1-slim
 
 MAINTAINER Cyril Rohr <cyril@pullpreview.com>
 
