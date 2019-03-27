@@ -4,7 +4,7 @@ FROM ruby:2.6.1-slim
 MAINTAINER Cyril Rohr <cyril@pullpreview.com>
 
 # Install dependencies:
-RUN apt-get update && apt-get install -qq -y build-essential nodejs libpq-dev postgresql-client-9.4 --fix-missing --no-install-recommends
+RUN apt-get update && apt-get install -qq -y build-essential nodejs libpq-dev postgresql-client-9.6 --fix-missing --no-install-recommends
 
 # Set an environment variable to store where the app is installed to inside
 # of the Docker image.
