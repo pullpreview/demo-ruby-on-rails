@@ -1,0 +1,53 @@
+version: '3'
+networks:
+  frontend:
+  backend:
+volumes:
+  pgdata:
+  appdata:
+services:
+  postgres:
+    image: postgres:9.4.5
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: p4ssw0rd
+      POSTGRES_DB: app
+    networks:
+      backend: {}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:3.0.5
+    networks:
+      backend: {}
+
+  web:
+    build: .
+    command: "./docker/web"
+    depends_on:
+      - postgres
+      - redis
+      - worker
+    volumes:
+      - appdata:/app/files
+    networks:
+      frontend:
+      backend:
+    ports:
+      - '9000:8000'
+    env_file:
+      - .env.pullpreview
+
+  worker:
+    build: .
+    command: "./docker/worker"
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - appdata:/app/files
+    networks:
+      backend:
+    env_file:
+      - .env.pullpreview
