@@ -43,4 +43,4 @@ jobs:
       with:
         path: app
     - name: Deploy app
-        run: docker run --rm -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -v $GITHUB_WORKSPACE/app:/app pullpreview/pullpreview up /app --admins crohr --name "${{ github.repository }}-${{ github.ref }}"
+        run: "docker run --rm -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -v $GITHUB_WORKSPACE/app:/app pullpreview/pullpreview up /app --admins crohr --name '${{ github.repository }}-${{ github.ref }}'"
