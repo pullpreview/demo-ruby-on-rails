@@ -36,7 +36,7 @@ services:
       frontend:
       backend:
     ports:
-      - '9000:8000'
+      - '80:8000'
     env_file:
       - .env.pullpreview
 
