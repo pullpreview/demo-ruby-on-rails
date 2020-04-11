@@ -31,6 +31,7 @@ services:
       - worker
     volumes:
       - appdata:/app/files
+    restart: unless-stopped
     networks:
       frontend:
       backend:
@@ -49,5 +50,6 @@ services:
       - appdata:/app/files
     networks:
       backend:
+    restart: unless-stopped
     env_file:
       - .env.pullpreview
