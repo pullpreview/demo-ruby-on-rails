@@ -35,10 +35,6 @@ services:
     networks:
       frontend:
       backend:
-    ports:
-      - '80:8000'
-    env_file:
-      - .env.pullpreview
 
   worker:
     build: .
@@ -51,5 +47,3 @@ services:
     networks:
       backend:
     restart: unless-stopped
-    env_file:
-      - .env.pullpreview
