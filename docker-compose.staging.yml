@@ -9,8 +9,8 @@ services:
     env_file:
       - .env.staging
   proxy:
-    image: pullpreview/ssl-proxy:v0.2.6
-    command: ["-from", "0.0.0.0:443", "-to", "web:8000", "-domain=${PULLPREVIEW_PUBLIC_DNS}", "-redirectHTTP"]
+    image: caddy:2-alpine
+    command: "caddy reverse-proxy --from ${PULLPREVIEW_PUBLIC_DNS} --to web:8000"
     restart: unless-stopped
     depends_on:
       - web
