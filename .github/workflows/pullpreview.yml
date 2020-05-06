@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: pullpreview/action@master
+    - uses: pullpreview/action@v3
       with:
         admins: crohr
         always_on: master
