@@ -1,3 +1,5 @@
+![PullPreview](https://github.com/pullpreview/demo-ruby-on-rails/workflows/PullPreview/badge.svg)
+
 ## Demo of PullPreview action for a Ruby on Rails application
 
 Have a look at the `.github/workflows/pullpreview.yml` file, as well as the `docker-compose.*` files to see how it's setup.
