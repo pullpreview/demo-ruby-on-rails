@@ -1,4 +1,5 @@
-<h1>Posts</h1>
+<h1>Hello World!</h1>
+<p>This is the <code>test-feature1</code> pull request</p>
 
 <%= content_tag :ul do %>
   <%= content_tag_for :li, @posts do |post| %>
@@ -7,4 +8,4 @@
   <% end %>
 <% end %>
 
-<%= link_to "Write new post", [:new, :post] %>
+<%= link_to "Write new post", [:new, :post] %> | <%= link_to "Back to PullPreview.com", "https://pullpreview.com" %>
