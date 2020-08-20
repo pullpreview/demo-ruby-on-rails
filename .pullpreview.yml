@@ -1,0 +1,3 @@
+compose_files:
+  - docker-compose.yml
+  - docker-compose.staging.yml
