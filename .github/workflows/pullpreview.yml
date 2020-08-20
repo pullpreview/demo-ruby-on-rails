@@ -4,7 +4,7 @@ on:
     branches:
       - master
   pull_request_target:
-    types: [labeled, unlabeled, closed, synchronized, reopened]
+    types: [labeled, unlabeled, closed, synchronize, reopened]
 
 jobs:
   deploy:
