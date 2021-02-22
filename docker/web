@@ -1,4 +1,6 @@
 #!/bin/bash
 set -e
 
-bundle exec puma -b "tcp://$LISTEN_ON" -e "${RAILS_ENV:=development}"
+BIND="${BIND:=0.0.0.0}"
+PORT="${PORT:=3000}"
+bundle exec puma -b "tcp://${BIND}:${PORT}" -e "${RAILS_ENV:=development}"
