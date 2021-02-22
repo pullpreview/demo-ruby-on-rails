@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
 
-bundle exec puma -b "tcp://$LISTEN_ON"
+bundle exec puma -b "tcp://$LISTEN_ON" -e "${RAILS_ENV:=development}"
