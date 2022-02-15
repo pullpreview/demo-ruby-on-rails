@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 networks:
   frontend:
   backend:
@@ -7,7 +7,7 @@ volumes:
   appdata:
 services:
   postgres:
-    image: postgres:9.4.5
+    image: postgres:9.4
     environment:
       POSTGRES_USER: app
       POSTGRES_PASSWORD: p4ssw0rd
@@ -18,7 +18,7 @@ services:
       - pgdata:/var/lib/postgresql/data
 
   redis:
-    image: redis:3.0.5
+    image: redis:4
     networks:
       backend: {}
 

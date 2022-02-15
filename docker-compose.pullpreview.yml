@@ -1,8 +1,6 @@
-version: '3'
+version: "3"
 services:
   web:
-    ports:
-      - "8000"
     env_file:
       - .env.staging
   worker:
@@ -10,8 +8,13 @@ services:
       - .env.staging
   proxy:
     image: caddy:2-alpine
-    command: "caddy reverse-proxy --from ${PULLPREVIEW_PUBLIC_DNS} --to web:8000"
+    environment:
+      - SITE_FQDN=${PULLPREVIEW_PUBLIC_DNS}
+      - SITE_PASSWORD
+    command: "/docker/caddy/run"
     restart: unless-stopped
+    volumes:
+      - "./docker/caddy:/docker/caddy"
     depends_on:
       - web
     networks:

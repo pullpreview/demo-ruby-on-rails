@@ -1,7 +1,7 @@
 # Use the barebones version of Ruby 2.2.3.
 FROM ruby:2.7-slim
 
-MAINTAINER Cyril Rohr <cyril@pullpreview.com>
+MAINTAINER Cyril Rohr <support@pullpreview.com>
 
 # Install dependencies:
 RUN apt-get update && apt-get install -qq -y build-essential nodejs libpq-dev postgresql-client
@@ -30,3 +30,5 @@ RUN bundle exec rake RAILS_ENV=production DATABASE_URL=postgresql://user:pass@12
 
 # The default command that gets ran will be to start the Unicorn server.
 CMD ./docker/web
+
+EXPOSE 3000

@@ -1,0 +1,6 @@
+{$SITE_FQDN} {
+  basicauth / {
+    admin {$SITE_PASSWORD_HASHED}
+  } 
+  reverse_proxy web:3000
+}

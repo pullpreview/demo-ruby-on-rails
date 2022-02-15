@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+
+export SITE_FQDN
+export SITE_PASSWORD_HASHED="$(caddy hash-password --plaintext "${SITE_PASSWORD:-p4ssw0rd}")"
+
+exec caddy run --config /docker/caddy/Caddyfile

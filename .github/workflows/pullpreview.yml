@@ -22,7 +22,7 @@ jobs:
         with:
           admins: crohr
           always_on: master
-          compose_files: "docker-compose.yml,docker-compose.staging.yml"
+          compose_files: "docker-compose.yml,docker-compose.pullpreview.yml"
           default_port: 443
           instance_type: "micro_2_0"
         env:
