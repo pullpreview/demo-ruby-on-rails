@@ -1,26 +1,30 @@
 name: PullPreview
 on:
+  schedule:
+    - cron: "30 0 * * *"
   push:
     branches:
       - master
-  pull_request_target:
-    types: [labeled, unlabeled, closed, synchronize, reopened]
+  pull_request:
+    types: [labeled, unlabeled, synchronize, closed, reopened]
 
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event_name == 'push' || github.event.label.name == 'pullpreview' || contains(github.event.pull_request.labels.*.name, 'pullpreview')
+    timeout-minutes: 30
     steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
-    - uses: pullpreview/action@v3
-      with:
-        admins: crohr
-        always_on: master
-        compose_files: "docker-compose.yml,docker-compose.staging.yml"
-        default_port: 443
-        instance_type: "micro_2_0"
-      env:
-        AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
-        AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: pullpreview/action@v5
+        with:
+          admins: crohr
+          always_on: master
+          compose_files: "docker-compose.yml,docker-compose.staging.yml"
+          default_port: 443
+          instance_type: "micro_2_0"
+        env:
+          AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
+          AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
